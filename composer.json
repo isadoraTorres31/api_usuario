@@ -1,0 +1,22 @@
+{
+    "name": "isadora.torres/tarefas",
+    "require": {
+        "slim/slim": "^4.14",
+        "psr/http-client": "^1.0",
+        "slim/psr7": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "IsadoraTorres\\Tarefas\\": "src/"
+        }
+    },
+    "require-dev": {
+        "portphp/csv": "^2.0",
+        "pestphp/pest": "^2.36"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
