@@ -41,6 +41,10 @@ $app->post('/tarefas', function (Request $request, Response $response, array $ar
         ]));
         return $response->withHeader('content-type', 'application/json')->withStatus(400);
     }
+    $tarefa = array_merge(['titulo' => '', 'concluido' => false], $paramentos);
+    $tarefa_service = new TarefaService();
+    $tarefa_service->createTarefa($tarefa);
+    
     return $response->withStatus(201);
 });
 $app->delete('/tarefas', function (Request $request, Response $response, array $args) {
@@ -73,5 +77,7 @@ $app->put('/tarefas/{id}', function (Request $request, Response $response, array
     }
     return $response->withStatus(201);
 });
+
+
 
 $app->run();
