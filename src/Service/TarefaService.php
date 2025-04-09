@@ -3,7 +3,7 @@ namespace IsadoraTorres\Tarefas\Service;
  
 class TarefaService
 {
-    private $filePath = __DIR__ . '/../data.json';
+    private $filePath = __DIR__ . '../../../data_tarefa.json';
  
     private function readData()
     {
