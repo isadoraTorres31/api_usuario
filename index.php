@@ -4,10 +4,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\Exception\HttpNotFoundException;
-use IsadoraTorres\Tarefas\Service;
-use IsadoraTorres\Tarefas\Service\TarefaService;
+use Projetux\Tarefas\Service;
+use Projetux\Math\Service\TarefaService;
 use Projetux\info\debug;
-
+use Projetux\Math\Basic;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -27,6 +27,14 @@ $errorMiddleware->setErrorHandler(HttpNotFoundException::class, function (
     $response->getBody()->write('{"error": "Recurso não foi encontrado"}');
     return $response->withHeader('Content-Type', 'application/json')
         ->withStatus(404);
+});
+
+
+$app->get('/teste/soma/{num1}/{num2}', function (Request $request, Response $response, array $args) {
+    $basic = new Basic();
+    $resultado = $basic->soma($args['num1'], $args['num2']);
+    $response->getBody()->write((string) $resultado);
+    return $response;
 });
 
 $app->get('/tarefas', function (Request $request, Response $response, array $args) {

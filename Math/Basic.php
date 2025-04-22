@@ -19,7 +19,7 @@ class Basic
      */
     public function subtrai(int|float $numero, int|float $numero2)
     {
-        return $numero + $numero2;
+        return $numero - $numero2;
     }
 
 
