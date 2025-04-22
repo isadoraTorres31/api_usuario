@@ -64,6 +64,13 @@ $app->get('/teste/multiplica/{num1}/{num2}', function (Request $request, Respons
     return $response;
 });
 
+$app->get('/teste/elevadoAoQuadrado/{num1}/{num2}', function (Request $request, Response $response, array $args) {
+    $basic = new Basic();
+    $resultado = $basic->elevadoAoQuadrado($args['num1'], $args['num2']);
+    $response->getBody()->write((string) $resultado);
+    return $response;
+});
+
 
 $app->get('/tarefas', function (Request $request, Response $response, array $args) {
     $tarefa_service = new TarefaService();
