@@ -45,7 +45,7 @@ class Basic
     /**
      * @return int|float
      */
-    public function muiltiplica(int|float $numero, int|float $numero2)
+    public function multiplica(int|float $numero, int|float $numero2)
     {
         return $numero * $numero2;
     }

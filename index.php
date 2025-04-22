@@ -4,8 +4,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\Exception\HttpNotFoundException;
-use Projetux\Tarefas\Service;
-use Projetux\Math\Service\TarefaService;
+use Projetux\Service\TarefaService;
 use Projetux\info\debug;
 use Projetux\Math\Basic;
 
@@ -36,6 +35,35 @@ $app->get('/teste/soma/{num1}/{num2}', function (Request $request, Response $res
     $response->getBody()->write((string) $resultado);
     return $response;
 });
+
+$app->get('/teste/subtrai/{num1}/{num2}', function (Request $request, Response $response, array $args) {
+    $basic = new Basic();
+    $resultado = $basic->subtrai($args['num1'], $args['num2']);
+    $response->getBody()->write((string) $resultado);
+    return $response;
+});
+
+$app->get('/teste/divide/{num1}/{num2}', function (Request $request, Response $response, array $args) {
+    $basic = new Basic();
+    $resultado = $basic->divide($args['num1'], $args['num2']);
+    $response->getBody()->write((string) $resultado);
+    return $response;
+});
+
+$app->get('/teste/raizQuadrada/{num1}/{num2}', function (Request $request, Response $response, array $args) {
+    $basic = new Basic();
+    $resultado = $basic->raizQuadrada($args['num1'], $args['num2']);
+    $response->getBody()->write((string) $resultado);
+    return $response;
+});
+
+$app->get('/teste/multiplica/{num1}/{num2}', function (Request $request, Response $response, array $args) {
+    $basic = new Basic();
+    $resultado = $basic->multiplica($args['num1'], $args['num2']);
+    $response->getBody()->write((string) $resultado);
+    return $response;
+});
+
 
 $app->get('/tarefas', function (Request $request, Response $response, array $args) {
     $tarefa_service = new TarefaService();
