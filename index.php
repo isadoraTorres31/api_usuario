@@ -6,6 +6,8 @@ use Slim\Factory\AppFactory;
 use Slim\Exception\HttpNotFoundException;
 use IsadoraTorres\Tarefas\Service;
 use IsadoraTorres\Tarefas\Service\TarefaService;
+use Projetux\info\debug;
+
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -27,7 +29,7 @@ $errorMiddleware->setErrorHandler(HttpNotFoundException::class, function (
         ->withStatus(404);
 });
 
-$app->get('tarefas', function (Request $request, Response $response, array $args) {
+$app->get('/tarefas', function (Request $request, Response $response, array $args) {
     $tarefa_service = new TarefaService();
     $tarefas = $tarefa_service->getAllTarefas();
     $response->getBody()->write(json_encode($tarefas));
@@ -54,18 +56,13 @@ $app->delete('/tarefas', function (Request $request, Response $response, array $
     return $response->withStatus(204);
 });
 $app->put('/tarefas', function (Request $request, Response $response, array $args) {
-
     return $response->withStatus(201);
 });
 
 $app->delete('/tarefas/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
-    return $response->withStatus(204);
-});
 
-$app->put('/tarefas', function (Request $request, Response $response, array $args) {
-    $id = $args['id'];
-    return $response->withStatus(201);
+    return $response->withStatus(204);
 });
 
 $app->put('/tarefas/{id}', function (Request $request, Response $response, array $args) {
@@ -77,6 +74,9 @@ $app->put('/tarefas/{id}', function (Request $request, Response $response, array
         ]));
         return $response->withHeader('Content-Type', 'application/json')->withStatus(400);
     }
+    $tarefa_service = new Tarefaservice();
+    $tarefa_service->updateTarefa($id, $dados_para_atualizar);
+
     return $response->withStatus(201);
 });
 

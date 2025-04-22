@@ -12,8 +12,7 @@ $app = AppFactory::create();
 $errorMidleware = $app->addErrorMidleware(true, true, true);
 $errorMidleware->setErrorHandler(HttpNotFoundException::class, function (
     Request $request,
-) 
-)
+));
 
 // Base de dados em memória
 $usuarios = [
